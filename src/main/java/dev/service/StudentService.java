@@ -10,18 +10,18 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private StudentRepository StudentRepository;
+    private StudentRepository studentRepository;
 
-    public StudentService(StudentRepository StudentRepository) {
-        this.StudentRepository = StudentRepository;
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     public void create(Student Student) throws SQLException {
         Student.setEmail(Student.getEmail().toLowerCase());
-        StudentRepository.create(Student);
+        studentRepository.create(Student);
     }
    public List<Student> showAllStudent() throws SQLException {
-        return StudentRepository.showAllStudent();
+        return studentRepository.showAllStudent();
    }
 
 
@@ -32,14 +32,14 @@ public class StudentService {
 
 
     public Student StudentDetails(int id) throws SQLException {
-        return StudentRepository.StudentDetails(id);
+        return studentRepository.StudentDetails(id);
     }
 
     public void EditStudent(Student student) throws SQLException {
-        StudentRepository.EditStudent(student);
+        studentRepository.EditStudent(student);
     }
 
     public void deleteStudent(int id) throws SQLException {
-        StudentRepository.deleteStudent(id);
+        studentRepository.deleteStudent(id);
     }
 }

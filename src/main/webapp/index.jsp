@@ -5,7 +5,7 @@
 
 <hr>
 
-<a href="${pageContext.request.contextPath}/store">Create Student</a>
+<a href="${pageContext.request.contextPath}/create">Create Student</a>
 
 </body>
 </html>

@@ -18,10 +18,10 @@ import java.sql.SQLException;
 @Controller
 public class StudentController {
 
-    private StudentService StudentService;
+    private StudentService studentService;
 
-    public StudentController(StudentService StudentService) {
-        this.StudentService = StudentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @InitBinder
@@ -37,7 +37,7 @@ public class StudentController {
     }
     @RequestMapping("/Students")
     public String getAllStudents(Model model) throws SQLException {
-        List<Student> student = StudentService.showAllStudent();
+        List<Student> student = studentService.showAllStudent();
         model.addAttribute("Students", student);
         return "allStudent";
     }
@@ -47,20 +47,20 @@ public class StudentController {
             return "registration";
         }
         else {
-            StudentService.create(Student);
+            studentService.create(Student);
             return "confirm";
         }
     }
     @RequestMapping("/students/{id}")
     public String showDetails(@PathVariable int id, Model model) throws SQLException {
-        Student student = StudentService.StudentDetails(id);
+        Student student = studentService.StudentDetails(id);
         model.addAttribute("Students", student);
         return "studentDetails";
     }
     @RequestMapping(value = "/students/{id}/edit")
     public String EditStudent(@PathVariable int id, Model model) throws SQLException {
 
-        Student student = StudentService.StudentDetails(id);
+        Student student = studentService.StudentDetails(id);
         if (student == null) {
             return "studentNotFound";
         }
@@ -70,13 +70,13 @@ public class StudentController {
     }
     @RequestMapping(value = "/students/{id}/delete")
     public String deleteStudent(@PathVariable int id) throws SQLException {
-        StudentService.deleteStudent(id);
+        studentService.deleteStudent(id);
         return "redirect:/Students";
 
     }
     @RequestMapping("/updateStudent")
     public String EditStudent(@ModelAttribute Student student) throws SQLException {
-        StudentService.EditStudent(student);
+        studentService.EditStudent(student);
         return "redirect:/Students";
     }
 

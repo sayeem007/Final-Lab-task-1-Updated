@@ -15,7 +15,7 @@
     <bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource">
         <property name="databaseName" value="ftaskone"/>
         <property name="url" value="jdbc:mysql://localhost:3306/ftaskone"/>
-        <property name="Student" value="root"/>
+        <property name="user" value="root"/>
         <property name="password" value="Sayeem@12"/>
     </bean>
 

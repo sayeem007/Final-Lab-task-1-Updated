@@ -1,5 +1,6 @@
 package dev.repository;
 
+import dev.domain.Gender;
 import dev.domain.Student;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,7 @@ public class StudentRepository {
 
     public void create(Student Student) throws SQLException {
         Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Student (id, name, email, dob, gender, quata, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO student (id, name, email, dob, gender, quata, country) VALUES (?, ?, ?, ?, ?, ?, ?)");
         preparedStatement.setInt(1, Student.getId());
         preparedStatement.setString(2, Student.getName());
         preparedStatement.setString(3, Student.getEmail());
@@ -46,7 +47,7 @@ public class StudentRepository {
                 student.setName(resultSet.getString("name"));
                 student.setEmail(resultSet.getString("email"));
                 student.setDob(LocalDate.parse(resultSet.getString("dob")));
-                Student.Gender Gender = Student.Gender.valueOf(resultSet.getString("gender"));
+                Gender Gender = dev.domain.Gender.valueOf(resultSet.getString("gender"));
                 student.setQuota(resultSet.getString("quota"));
                 student.setCountry(resultSet.getString("country"));
 
@@ -83,7 +84,7 @@ public class StudentRepository {
                     student.setName(resultSet.getString("full_name"));
                     student.setEmail(resultSet.getString("email"));
                     student.setDob(LocalDate.parse(resultSet.getString("date_of_birth")));
-                    student.setGender(Student.Gender.valueOf(resultSet.getString("gender")));
+                    student.setGender(Gender.valueOf(resultSet.getString("gender")));
                     student.setQuota(resultSet.getString("quota"));
                     student.setCountry(resultSet.getString("country"));
                 }
